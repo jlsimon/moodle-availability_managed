@@ -49,4 +49,8 @@ $observers = [
         'eventname' => '\\core\\event\\course_deleted',
         'callback' => '\\availability_managed\\observer::course_deleted',
     ],
+    [
+        'eventname' => '\\core\\event\\course_restored',
+        'callback' => '\\availability_managed\\observer::course_restored',
+    ],
 ];

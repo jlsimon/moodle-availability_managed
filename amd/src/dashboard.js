@@ -7,9 +7,23 @@ import Notification from 'core/notification';
 import * as Confirm from 'core/notification';
 import {getString} from 'core/str';
 
+/**
+ * Escape text before inserting it into modal markup.
+ *
+ * @param {String} value Text to escape.
+ * @returns {String} HTML-safe text.
+ */
+const escapeHtml = value => String(value).replace(/[&<>'"]/g, character => ({
+    '&': '&amp;',
+    '<': '&lt;',
+    '>': '&gt;',
+    "'": '&#039;',
+    '"': '&quot;',
+})[character]);
+
 const renderOptions = (items, selected, name) => items.map(item =>
-    `<label class="d-block"><input type="checkbox" name="${name}" value="${item.id}" ` +
-    `${selected.includes(item.id) ? 'checked' : ''}> ${item.name}</label>`
+    `<label class="d-block"><input type="checkbox" name="${name}" value="${Number(item.id)}" ` +
+    `${selected.includes(item.id) ? 'checked' : ''}> ${escapeHtml(item.name)}</label>`
 ).join('');
 
 const updateQuickActions = (buttonGroup, rules, labels) => {

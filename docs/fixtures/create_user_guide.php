@@ -33,6 +33,7 @@ require_once($CFG->dirroot . '/course/modlib.php');
 require_once($CFG->libdir . '/grouplib.php');
 require_once($CFG->libdir . '/enrollib.php');
 require_once($CFG->libdir . '/resourcelib.php');
+require_once($CFG->libdir . '/clilib.php');
 
 $admin = get_admin();
 \core\session\manager::set_user($admin);
@@ -44,9 +45,10 @@ $admin = get_admin();
  * @param string $firstname First name
  * @param string $lastname Last name
  * @param string $lang Language code
+ * @param string $password Fixture account password
  * @return stdClass User record
  */
-function guide_user(string $username, string $firstname, string $lastname, string $lang): stdClass {
+function guide_user(string $username, string $firstname, string $lastname, string $lang, string $password): stdClass {
     global $CFG, $DB;
     $user = $DB->get_record('user', ['username' => $username, 'mnethostid' => $CFG->mnet_localhost_id]);
     $record = (object) [
@@ -58,7 +60,7 @@ function guide_user(string $username, string $firstname, string $lastname, strin
         'confirmed' => 1,
         'mnethostid' => $CFG->mnet_localhost_id,
         'lang' => $lang,
-        'password' => 'Guide2026!',
+        'password' => $password,
     ];
     if ($user) {
         $record->id = $user->id;
@@ -104,11 +106,16 @@ function guide_page(stdClass $course, int $section, string $name, string $body):
     return add_moduleinfo($data, $course);
 }
 
+$guidepassword = getenv('MOODLE_GUIDE_PASSWORD');
+if ($guidepassword === false || $guidepassword === '') {
+    cli_error('Set MOODLE_GUIDE_PASSWORD before creating the guide fixtures.');
+}
+
 $users = [
-    'teacher' => guide_user('mavail_teacher', 'Elena', 'Martín', 'es'),
-    'ana' => guide_user('mavail_ana', 'Ana', 'López', 'es'),
-    'bruno' => guide_user('mavail_bruno', 'Bruno', 'Silva', 'es'),
-    'carla' => guide_user('mavail_carla', 'Carla', 'Reed', 'en'),
+    'teacher' => guide_user('mavail_teacher', 'Elena', 'Martín', 'es', $guidepassword),
+    'ana' => guide_user('mavail_ana', 'Ana', 'López', 'es', $guidepassword),
+    'bruno' => guide_user('mavail_bruno', 'Bruno', 'Silva', 'es', $guidepassword),
+    'carla' => guide_user('mavail_carla', 'Carla', 'Reed', 'en', $guidepassword),
 ];
 
 $shortname = 'MAVAIL-GUIDE';

@@ -111,6 +111,34 @@ class observer {
     }
 
     /**
+     * Remove copied markers when a restored course has no managed state.
+     *
+     * Availability plugins cannot add their own records to Moodle course
+     * backups. Leaving the marker without its rules would close restored
+     * content, so restored copies start unmanaged and can be enabled by a
+     * course manager afterwards.
+     *
+     * @param \core\event\course_restored $event event
+     */
+    public static function course_restored(\core\event\course_restored $event): void {
+        global $DB;
+
+        $courseid = (int) $event->courseid;
+        if ($DB->record_exists('availability_managed_course', ['courseid' => $courseid])) {
+            return;
+        }
+
+        $tree = new availability_tree_manager();
+        foreach ($DB->get_records('course_sections', ['course' => $courseid], '', 'id') as $section) {
+            $tree->remove_managed_condition_from_section((int) $section->id);
+        }
+        foreach ($DB->get_records('course_modules', ['course' => $courseid], '', 'id') as $module) {
+            $tree->remove_managed_condition_from_cm((int) $module->id);
+        }
+        \availability_managed\local\access_manager::reset_cache();
+    }
+
+    /**
      * Delete rules for a removed item.
      *
      * @param int $courseid course id
