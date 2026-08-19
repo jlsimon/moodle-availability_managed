@@ -1,4 +1,4 @@
-@availability_managed @javascript
+@availability @availability_managed @javascript
 Feature: Teachers centrally manage course content availability
   In order to release course content safely
   As an editing teacher

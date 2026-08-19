@@ -44,6 +44,11 @@ class get_target_view extends external_api {
 
     /**
      * Execute read.
+     *
+     * @param int $courseid course id
+     * @param string $scope target scope
+     * @param int $scopeid target id
+     * @return array target view
      */
     public static function execute(int $courseid, string $scope, int $scopeid): array {
         $params = self::validate_parameters(self::execute_parameters(), compact('courseid', 'scope', 'scopeid'));

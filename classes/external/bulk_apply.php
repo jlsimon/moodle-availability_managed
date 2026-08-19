@@ -42,6 +42,10 @@ class bulk_apply extends external_api {
 
     /**
      * Execute the bulk copy.
+     *
+     * @param int $courseid course id
+     * @param int $sectionid section id
+     * @return array operation result
      */
     public static function execute(int $courseid, int $sectionid): array {
         global $USER;

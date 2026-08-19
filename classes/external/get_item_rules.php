@@ -44,6 +44,11 @@ class get_item_rules extends external_api {
 
     /**
      * Execute the rule read.
+     *
+     * @param int $courseid course id
+     * @param string $itemtype item type
+     * @param int $itemid item id
+     * @return array rule selection
      */
     public static function execute(int $courseid, string $itemtype, int $itemid): array {
         $params = self::validate_parameters(self::execute_parameters(), compact('courseid', 'itemtype', 'itemid'));

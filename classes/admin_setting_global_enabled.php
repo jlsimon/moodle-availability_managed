@@ -28,6 +28,9 @@ use availability_managed\local\global_manager;
 class admin_setting_global_enabled extends \admin_setting_configcheckbox {
     /**
      * Save the switch and reconcile when changing from off to on.
+     *
+     * @param mixed $data submitted setting value
+     * @return string empty string on success or an error message
      */
     public function write_setting($data): string {
         $wasenabled = global_manager::is_enabled();
