@@ -1,0 +1,4 @@
+# Local test-environment credentials.
+.local-credentials.md
+docs/fixtures/.courseid
+SESSION_HANDOFF.local.md

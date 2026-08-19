@@ -1,0 +1,53 @@
+<div class="local-managedavailability-config">
+    <h2>{{#str}}courseconfiguration, availability_managed{{/str}}</h2>
+    <p class="text-muted">{{#str}}courseconfiguration_desc, availability_managed{{/str}}</p>
+
+    {{#enabled}}
+        <div class="alert alert-success" role="status">
+            <strong>{{#str}}statusenabled, availability_managed{{/str}}</strong>
+            {{#isopen}}<div>{{#str}}currentdefaultopen, availability_managed{{/str}}</div>{{/isopen}}
+            {{#isclosed}}<div>{{#str}}currentdefaultclosed, availability_managed{{/str}}</div>{{/isclosed}}
+        </div>
+        <div class="mb-3">
+            <a href="{{dashboardurl}}" class="btn btn-primary">
+                {{#str}}gotodashboard, availability_managed{{/str}}
+            </a>
+        </div>
+        <div class="card border-danger"><div class="card-body">
+            <h3 class="h5">{{#str}}disablecourse, availability_managed{{/str}}</h3>
+            <p>{{#str}}disablecourse_desc, availability_managed{{/str}}</p>
+            <form method="post" action="?courseid={{courseid}}&amp;action=disable">
+                <input type="hidden" name="sesskey" value="{{sesskey}}">
+                <button type="submit" class="btn btn-danger">{{#str}}disablecourse, availability_managed{{/str}}</button>
+            </form>
+        </div></div>
+    {{/enabled}}
+
+    {{#disabled}}
+        <div class="alert alert-secondary" role="status">
+            <strong>{{#str}}statusdisabled, availability_managed{{/str}}</strong>
+        </div>
+        <form method="post" action="?courseid={{courseid}}&amp;action=enable">
+            <input type="hidden" name="sesskey" value="{{sesskey}}">
+            <fieldset>
+                <legend class="h5">{{#str}}initialstate, availability_managed{{/str}}</legend>
+                <p>{{#str}}initialstate_desc, availability_managed{{/str}}</p>
+                <div class="form-check mb-3">
+                    <input class="form-check-input" type="radio" name="defaultstate" value="open" id="managed-state-open" checked>
+                    <label class="form-check-label" for="managed-state-open">
+                        <strong>{{#str}}initialopen, availability_managed{{/str}}</strong><br>
+                        {{#str}}initialopen_desc, availability_managed{{/str}}
+                    </label>
+                </div>
+                <div class="form-check mb-3">
+                    <input class="form-check-input" type="radio" name="defaultstate" value="closed" id="managed-state-closed">
+                    <label class="form-check-label" for="managed-state-closed">
+                        <strong>{{#str}}initialclosed, availability_managed{{/str}}</strong><br>
+                        {{#str}}initialclosed_desc, availability_managed{{/str}}
+                    </label>
+                </div>
+            </fieldset>
+            <button type="submit" class="btn btn-primary">{{#str}}enablecourse, availability_managed{{/str}}</button>
+        </form>
+    {{/disabled}}
+</div>
