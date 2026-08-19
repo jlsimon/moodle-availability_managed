@@ -134,6 +134,7 @@ Additional technical documentation:
 - [Availability-tree handling](docs/availability-tree.md)
 - [Data model](docs/data-model.md)
 - [Testing](docs/testing.md)
+- [Marketplace submission data](docs/marketplace.md)
 
 Public support resources:
 
