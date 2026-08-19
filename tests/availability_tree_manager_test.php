@@ -107,15 +107,6 @@ final class availability_tree_manager_test extends \advanced_testcase {
         );
     }
 
-    public function test_legacy_phase_zero_root_is_migrated(): void {
-        $actual = json_decode(availability_tree_manager::ensure_in_json(
-            '{"op":"&","c":[{"type":"managed"}],"show":[false]}'
-        ));
-
-        $this->assertSame([false], $actual->showc);
-        $this->assertObjectNotHasProperty('show', $actual);
-    }
-
     public function test_generated_tree_is_accepted_by_moodle_core(): void {
         $json = availability_tree_manager::ensure_in_json(
             '{"op":"|","c":[{"type":"group","id":2},{"type":"date","d":">=","t":123}],"show":false}'

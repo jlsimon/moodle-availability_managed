@@ -22,16 +22,6 @@ php admin/cli/upgrade.php --non-interactive
 php admin/cli/purge_caches.php
 ```
 
-## Upgrade from the former two-plugin distribution
-
-The consolidated plugin migrates the former `local_managedavailability` data automatically:
-
-- course state, rules, and audit records are copied to tables owned by `availability_managed`;
-- the global enabled setting is copied;
-- explicit role capability assignments and overrides are copied to the new capability names.
-
-Upgrade `availability_managed` while the old database tables still exist. Verify the dashboard and data before uninstalling the obsolete local plugin. Uninstalling it afterwards only removes its legacy tables; the consolidated tables are independent.
-
 ## Operation
 
 Administrators can globally suspend or enable the product in the Managed availability plugin settings. Global suspension is reversible: managed conditions allow access temporarily while all unrelated restrictions remain active.

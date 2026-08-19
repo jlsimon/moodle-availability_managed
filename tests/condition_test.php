@@ -17,7 +17,7 @@
 namespace availability_managed;
 
 /**
- * Tests for the Phase 0 marker condition.
+ * Tests for the managed marker condition.
  *
  * @package availability_managed
  * @copyright 2026 Juan Luis Simon

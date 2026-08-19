@@ -6,10 +6,10 @@ the English and Spanish guides.
 
 ## Rebuild the dataset
 
-Run from the Moodle root:
+Run the script from the installed plugin:
 
 ```bash
-php /absolute/path/to/docs/fixtures/create_user_guide.php
+php availability/condition/managed/docs/fixtures/create_user_guide.php
 ```
 
 The command replaces only the dedicated course with short name

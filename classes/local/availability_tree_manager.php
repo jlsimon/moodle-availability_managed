@@ -216,7 +216,6 @@ class availability_tree_manager {
         if (!is_object($root)) {
             throw new \coding_exception('Invalid availability tree structure');
         }
-        self::normalise_legacy_display_fields($root, true);
         self::validate_tree($root, true);
         return $root;
     }
@@ -249,27 +248,6 @@ class availability_tree_manager {
                 self::validate_tree($child, false);
             } else if (!is_object($child) || !isset($child->type) || !is_string($child->type)) {
                 throw new \coding_exception('Invalid availability condition structure');
-            }
-        }
-    }
-
-    /**
-     * Convert Phase 0 legacy display fields to Moodle's representation.
-     *
-     * @param \stdClass $tree tree node
-     * @param bool $root whether this is the root node
-     */
-    private static function normalise_legacy_display_fields(\stdClass $tree, bool $root): void {
-        if ($root && isset($tree->show) && is_array($tree->show) && !isset($tree->showc)) {
-            $tree->showc = $tree->show;
-            unset($tree->show);
-        }
-        foreach ($tree->c ?? [] as $child) {
-            if (self::is_tree($child)) {
-                if (isset($child->show) && is_array($child->show)) {
-                    $child->show = !in_array(false, $child->show, true);
-                }
-                self::normalise_legacy_display_fields($child, false);
             }
         }
     }
