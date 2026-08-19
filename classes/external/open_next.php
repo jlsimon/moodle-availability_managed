@@ -43,6 +43,11 @@ class open_next extends external_api {
 
     /**
      * Execute progression.
+     *
+     * @param int $courseid course id
+     * @param string $scope target scope
+     * @param int $scopeid target id
+     * @return array operation result
      */
     public static function execute(int $courseid, string $scope, int $scopeid): array {
         global $USER;

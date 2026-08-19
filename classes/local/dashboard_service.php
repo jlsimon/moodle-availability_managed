@@ -26,6 +26,11 @@ namespace availability_managed\local;
 class dashboard_service {
     /**
      * Get the rule selection for an item.
+     *
+     * @param int $courseid course id
+     * @param string $itemtype item type
+     * @param int $itemid item id
+     * @return array rule selection
      */
     public function get_item_rules(int $courseid, string $itemtype, int $itemid): array {
         global $DB;
@@ -49,6 +54,15 @@ class dashboard_service {
 
     /**
      * Replace the complete rule selection for an item.
+     *
+     * @param int $courseid course id
+     * @param string $itemtype item type
+     * @param int $itemid item id
+     * @param bool $everyone whether everyone is allowed
+     * @param array $groupids allowed group ids
+     * @param array $userids allowed user ids
+     * @param int $userid acting user id
+     * @return array updated rule selection
      */
     public function set_item_rules(
         int $courseid,
@@ -143,6 +157,9 @@ class dashboard_service {
 
     /**
      * Return a localized compact summary.
+     *
+     * @param array $rules rule selection
+     * @return string localized summary
      */
     public function summary(array $rules): string {
         if ($rules['everyone']) {
@@ -160,6 +177,10 @@ class dashboard_service {
 
     /**
      * Validate that an item belongs to the course.
+     *
+     * @param int $courseid course id
+     * @param string $itemtype item type
+     * @param int $itemid item id
      */
     private function require_item(int $courseid, string $itemtype, int $itemid): void {
         global $DB;

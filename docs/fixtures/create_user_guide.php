@@ -1,24 +1,32 @@
 <?php
 // This file is part of Moodle - http://moodle.org/
+//
+// Moodle is free software: you can redistribute it and/or modify
+// it under the terms of the GNU General Public License as published by
+// the Free Software Foundation, either version 3 of the License, or
+// (at your option) any later version.
+//
+// Moodle is distributed in the hope that it will be useful,
+// but WITHOUT ANY WARRANTY; without even the implied warranty of
+// MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+// GNU General Public License for more details.
+//
+// You should have received a copy of the GNU General Public License
+// along with Moodle.  If not, see <https://www.gnu.org/licenses/>.
 
 /**
  * Rebuild the local user-guide demonstration course.
  *
- * Run from the Moodle root:
- * php /path/to/create_user_guide.php
+ * Run from the Moodle root after installing the plugin:
+ * php availability/condition/managed/docs/fixtures/create_user_guide.php
  *
  * @package availability_managed
+ * @copyright 2026 Juan Luis Simon
+ * @license http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
 
 define('CLI_SCRIPT', true);
-
-$moodleroot = getcwd();
-if (!is_file($moodleroot . '/config.php')) {
-    fwrite(STDERR, "Run this script from the Moodle root.\n");
-    exit(1);
-}
-
-require($moodleroot . '/config.php');
+require(__DIR__ . '/../../../../../config.php');
 require_once($CFG->dirroot . '/user/lib.php');
 require_once($CFG->dirroot . '/course/lib.php');
 require_once($CFG->dirroot . '/course/modlib.php');
@@ -29,7 +37,15 @@ require_once($CFG->libdir . '/resourcelib.php');
 $admin = get_admin();
 \core\session\manager::set_user($admin);
 
-/** Create or update a dedicated fictional guide user. */
+/**
+ * Create or update a dedicated fictional guide user.
+ *
+ * @param string $username Username
+ * @param string $firstname First name
+ * @param string $lastname Last name
+ * @param string $lang Language code
+ * @return stdClass User record
+ */
 function guide_user(string $username, string $firstname, string $lastname, string $lang): stdClass {
     global $CFG, $DB;
     $user = $DB->get_record('user', ['username' => $username, 'mnethostid' => $CFG->mnet_localhost_id]);
@@ -53,7 +69,15 @@ function guide_user(string $username, string $firstname, string $lastname, strin
     return $DB->get_record('user', ['id' => $record->id], '*', MUST_EXIST);
 }
 
-/** Add a Page resource with stable guide content. */
+/**
+ * Add a Page resource with stable guide content.
+ *
+ * @param stdClass $course Course record
+ * @param int $section Section number
+ * @param string $name Page name
+ * @param string $body Page content
+ * @return stdClass Created module information
+ */
 function guide_page(stdClass $course, int $section, string $name, string $body): stdClass {
     global $DB;
     $data = (object) [
@@ -120,7 +144,11 @@ foreach ($sectionnames as $number => $name) {
 }
 
 $pages = [
-    [0, 'Welcome and course map', 'Use this page to understand the learning path and the access rules used in this demonstration course.'],
+    [
+        0,
+        'Welcome and course map',
+        'Use this page to understand the learning path and the access rules used in this demonstration course.',
+    ],
     [1, 'Core concepts', 'Review the shared concepts before moving on to collaborative work.'],
     [1, 'Foundation checklist', 'Check that you can explain the three core ideas in your own words.'],
     [2, 'Blue team brief', 'Instructions prepared for the Blue team workshop.'],
@@ -174,14 +202,54 @@ $service->copy_section_to_children($course->id, $sections[1], $admin->id);
 
 // Workshop: Blue and Red teams can enter, but their briefs remain specific.
 $service->set_item_rules($course->id, 'section', $sections[2], false, array_values($groups), [], $admin->id);
-$service->set_item_rules($course->id, 'cm', $createdmodules['Blue team brief']->coursemodule, false, [$groups['Blue team']], [], $admin->id);
-$service->set_item_rules($course->id, 'cm', $createdmodules['Red team brief']->coursemodule, false, [$groups['Red team']], [], $admin->id);
-$service->set_item_rules($course->id, 'cm', $createdmodules['Shared workshop board']->coursemodule, true, [], [], $admin->id);
+$service->set_item_rules(
+    $course->id,
+    'cm',
+    $createdmodules['Blue team brief']->coursemodule,
+    false,
+    [$groups['Blue team']],
+    [],
+    $admin->id
+);
+$service->set_item_rules(
+    $course->id,
+    'cm',
+    $createdmodules['Red team brief']->coursemodule,
+    false,
+    [$groups['Red team']],
+    [],
+    $admin->id
+);
+$service->set_item_rules(
+    $course->id,
+    'cm',
+    $createdmodules['Shared workshop board']->coursemodule,
+    true,
+    [],
+    [],
+    $admin->id
+);
 
 // Individual practice: Ana can enter; one activity is specifically assigned to her.
 $service->set_item_rules($course->id, 'section', $sections[3], false, [], [$users['ana']->id], $admin->id);
-$service->set_item_rules($course->id, 'cm', $createdmodules['Ana’s extension activity']->coursemodule, false, [], [$users['ana']->id], $admin->id);
-$service->set_item_rules($course->id, 'cm', $createdmodules['Independent practice']->coursemodule, false, [$groups['Blue team']], [], $admin->id);
+$service->set_item_rules(
+    $course->id,
+    'cm',
+    $createdmodules['Ana’s extension activity']->coursemodule,
+    false,
+    [],
+    [$users['ana']->id],
+    $admin->id
+);
+$service->set_item_rules(
+    $course->id,
+    'cm',
+    $createdmodules['Independent practice']->coursemodule,
+    false,
+    [$groups['Blue team']],
+    [],
+    $admin->id
+);
 
 // Final challenge: section and activities remain closed, illustrating hidden controls.
 

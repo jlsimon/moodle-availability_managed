@@ -26,6 +26,14 @@ namespace availability_managed\local;
 class audit_repository {
     /**
      * Record one functional change.
+     *
+     * @param int $courseid course id
+     * @param string $action action identifier
+     * @param int $userid acting user id
+     * @param string|null $itemtype affected item type
+     * @param int|null $itemid affected item id
+     * @param string|null $oldvalue previous serialized value
+     * @param string|null $newvalue new serialized value
      */
     public function record(
         int $courseid,

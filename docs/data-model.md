@@ -1,4 +1,4 @@
-# Phase 1 data model
+# Data model
 
 Managed targets are stored in the single `availability_managed_rule` table. Names, emails, group membership, and enrolment data remain owned by Moodle and are resolved dynamically.
 
@@ -8,7 +8,7 @@ Each row identifies:
 - one positive scope (`course`, `group`, or `user`) and its Moodle ID;
 - enabled state and creation/modification metadata.
 
-The unique index on `(courseid, itemtype, itemid, scope, scopeid)` makes rule writes idempotent. Item and scope indexes support dashboard lookups planned for later phases.
+The unique index on `(courseid, itemtype, itemid, scope, scopeid)` makes rule writes idempotent. Item and scope indexes support dashboard lookups.
 
 ## Resolution
 
@@ -20,4 +20,4 @@ For an actively enrolled user, `access_manager` loads enabled rules for the cour
 
 No match means denied. An inactive or missing enrolment is denied before rule resolution. Group membership is never copied into plugin storage.
 
-The cache key is `courseid:userid`. Repository writes clear the request cache. There is no persistent MUC cache in Phase 1.
+The cache key is `courseid:userid`. Repository writes clear the request cache. There is no persistent MUC cache.

@@ -21,6 +21,7 @@ use availability_managed\local\availability_tree_manager;
 /**
  * Availability tree mutation tests.
  *
+ * @covers \availability_managed\local\availability_tree_manager
  * @package availability_managed
  * @copyright 2026 Juan Luis Simon
  * @license http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
@@ -105,15 +106,6 @@ final class availability_tree_manager_test extends \advanced_testcase {
         availability_tree_manager::ensure_in_json(
             '{"op":"&","c":[{"op":"|","c":[{"type":"date"}]}],"showc":[true]}'
         );
-    }
-
-    public function test_legacy_phase_zero_root_is_migrated(): void {
-        $actual = json_decode(availability_tree_manager::ensure_in_json(
-            '{"op":"&","c":[{"type":"managed"}],"show":[false]}'
-        ));
-
-        $this->assertSame([false], $actual->showc);
-        $this->assertObjectNotHasProperty('show', $actual);
     }
 
     public function test_generated_tree_is_accepted_by_moodle_core(): void {

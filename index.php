@@ -94,7 +94,8 @@ foreach (groups_get_all_groups($courseid, 0, 0, 'g.id,g.name') as $group) {
     $groups[] = ['id' => (int) $group->id, 'name' => format_string($group->name, true, ['context' => $context])];
 }
 $users = [];
-foreach (get_enrolled_users($context, '', 0, 'u.id,u.firstname,u.lastname', 'u.lastname,u.firstname') as $user) {
+$userfields = 'u.id,' . implode(',', \core_user\fields::get_name_fields(true, 'u'));
+foreach (get_enrolled_users($context, '', 0, $userfields, 'u.lastname,u.firstname') as $user) {
     $users[] = ['id' => (int) $user->id, 'name' => fullname($user)];
 }
 

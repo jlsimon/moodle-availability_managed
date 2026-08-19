@@ -18,10 +18,8 @@ The tree manager adds, normalizes, or removes only managed nodes. It never repla
 
 Rules use OR semantics within the managed node: whole course, current membership of any selected group, or an explicit enrolled user. A missing rule denies access. Global suspension makes only the managed condition pass; it does not affect other Moodle checks.
 
-## Persistence and migration
+## Persistence
 
 Dynamic targets are stored in `availability_managed_course`, `availability_managed_rule`, and `availability_managed_audit`, not in the availability JSON.
-
-The upgrade step is idempotent. When legacy `local_mavail_*` tables are present, it copies their data without replacing existing consolidated records. It also migrates the old global setting and role capability assignments. Separate table names ensure that uninstalling the obsolete local plugin cannot delete consolidated data.
 
 Moodle has no dedicated public setter for availability JSON on an existing module or section. The tree manager therefore performs a targeted database update and immediately rebuilds the course cache, matching the persistence used by core availability information classes.

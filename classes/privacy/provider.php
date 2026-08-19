@@ -34,6 +34,9 @@ class provider implements
     \core_privacy\local\request\plugin\provider {
     /**
      * Describe stored personal data.
+     *
+     * @param collection $collection metadata collection
+     * @return collection completed metadata collection
      */
     public static function get_metadata(collection $collection): collection {
         $collection->add_database_table(
@@ -51,6 +54,9 @@ class provider implements
 
     /**
      * Find course contexts containing data for a user.
+     *
+     * @param int $userid user id
+     * @return contextlist matching contexts
      */
     public static function get_contexts_for_userid(int $userid): contextlist {
         $list = new contextlist();
@@ -65,6 +71,8 @@ class provider implements
 
     /**
      * Export approved user data.
+     *
+     * @param approved_contextlist $contextlist approved contexts
      */
     public static function export_user_data(approved_contextlist $contextlist): void {
         global $DB;
@@ -87,6 +95,8 @@ class provider implements
 
     /**
      * Delete personal data in one context.
+     *
+     * @param \context $context context to clear
      */
     public static function delete_data_for_all_users_in_context(\context $context): void {
         global $DB;
@@ -98,6 +108,8 @@ class provider implements
 
     /**
      * Delete data for one approved user.
+     *
+     * @param approved_contextlist $contextlist approved contexts
      */
     public static function delete_data_for_user(approved_contextlist $contextlist): void {
         global $DB;

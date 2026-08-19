@@ -6,10 +6,10 @@ the English and Spanish guides.
 
 ## Rebuild the dataset
 
-Run from the Moodle root:
+Run the script from the installed plugin:
 
 ```bash
-php /absolute/path/to/docs/fixtures/create_user_guide.php
+php availability/condition/managed/docs/fixtures/create_user_guide.php
 ```
 
 The command replaces only the dedicated course with short name
@@ -32,5 +32,5 @@ environment variables are `MOODLE_GUIDE_URL`, `MOODLE_GUIDE_COURSE`,
 
 The capture process logs in through Moodle, waits for the live interface,
 and writes full browser screenshots to `docs/images/guide_es` and
-`docs/images/guide`. It hides unrelated local-plugin overlays but does not
+`docs/images/guide`. It hides unrelated third-party overlays but does not
 alter or mock Managed Availability output.

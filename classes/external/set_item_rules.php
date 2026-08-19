@@ -47,6 +47,14 @@ class set_item_rules extends external_api {
 
     /**
      * Execute the rule replacement.
+     *
+     * @param int $courseid course id
+     * @param string $itemtype item type
+     * @param int $itemid item id
+     * @param bool $everyone whether everyone is allowed
+     * @param array $groupids allowed group ids
+     * @param array $userids allowed user ids
+     * @return array updated rule selection
      */
     public static function execute(
         int $courseid,

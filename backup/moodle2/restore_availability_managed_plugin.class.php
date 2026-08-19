@@ -33,6 +33,8 @@ class restore_availability_managed_plugin extends restore_plugin {
 
     /**
      * Restore course state.
+     *
+     * @param array $data restored state data
      */
     public function process_availability_managed_state(array $data): void {
         global $DB;
@@ -44,6 +46,8 @@ class restore_availability_managed_plugin extends restore_plugin {
 
     /**
      * Restore a safely mappable rule.
+     *
+     * @param array $data restored rule data
      */
     public function process_availability_managed_rule(array $data): void {
         global $DB;

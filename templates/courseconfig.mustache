@@ -1,4 +1,19 @@
-<div class="local-managedavailability-config">
+{{!
+    @template availability_managed/courseconfig
+
+    Course-level configuration for managed availability.
+
+    Example context (json):
+    {
+        "enabled": true,
+        "isopen": true,
+        "isclosed": false,
+        "dashboardurl": "https://example.invalid/managed",
+        "courseid": 2,
+        "sesskey": "example"
+    }
+}}
+<div class="availability-managed-config">
     <h2>{{#str}}courseconfiguration, availability_managed{{/str}}</h2>
     <p class="text-muted">{{#str}}courseconfiguration_desc, availability_managed{{/str}}</p>
 
