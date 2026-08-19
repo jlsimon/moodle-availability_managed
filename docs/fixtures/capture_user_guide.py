@@ -15,7 +15,7 @@ import urllib.error
 import urllib.request
 
 
-BASE = os.environ.get("MOODLE_GUIDE_URL", "https://atudemos.mudel.es")
+BASE = os.environ.get("MOODLE_GUIDE_URL", "http://localhost")
 ROOT = pathlib.Path(__file__).resolve().parents[1]
 COURSE_FILE = ROOT / "fixtures" / ".courseid"
 COURSE_ID = os.environ.get(
@@ -24,7 +24,7 @@ COURSE_ID = os.environ.get(
 )
 ADMIN_USER = os.environ.get("MOODLE_ADMIN_USER", "admin")
 ADMIN_PASSWORD = os.environ["MOODLE_ADMIN_PASSWORD"]
-DEMO_PASSWORD = os.environ.get("MOODLE_GUIDE_PASSWORD", "Guide2026!")
+DEMO_PASSWORD = os.environ["MOODLE_GUIDE_PASSWORD"]
 
 
 class Browser:
