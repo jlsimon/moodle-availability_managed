@@ -32,5 +32,5 @@ environment variables are `MOODLE_GUIDE_URL`, `MOODLE_GUIDE_COURSE`,
 
 The capture process logs in through Moodle, waits for the live interface,
 and writes full browser screenshots to `docs/images/guide_es` and
-`docs/images/guide`. It hides unrelated local-plugin overlays but does not
+`docs/images/guide`. It hides unrelated third-party overlays but does not
 alter or mock Managed Availability output.

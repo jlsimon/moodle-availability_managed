@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" ?>
-<XMLDB PATH="availability/condition/managed/db" VERSION="20260820" COMMENT="XMLDB file for availability_managed"
+<XMLDB PATH="availability/condition/managed/db" VERSION="20260819" COMMENT="XMLDB file for availability_managed"
     xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
     xsi:noNamespaceSchemaLocation="../../../lib/xmldb/xmldb.xsd">
   <TABLES>

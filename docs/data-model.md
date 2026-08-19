@@ -8,7 +8,7 @@ Each row identifies:
 - one positive scope (`course`, `group`, or `user`) and its Moodle ID;
 - enabled state and creation/modification metadata.
 
-The unique index on `(courseid, itemtype, itemid, scope, scopeid)` makes rule writes idempotent. Item and scope indexes support dashboard lookups planned for later phases.
+The unique index on `(courseid, itemtype, itemid, scope, scopeid)` makes rule writes idempotent. Item and scope indexes support dashboard lookups.
 
 ## Resolution
 

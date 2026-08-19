@@ -1,5 +1,5 @@
-.local-managedavailability [data-action="quick-open"]:disabled,
-.local-managedavailability [data-action="quick-close"]:disabled {
+.availability-managed [data-action="quick-open"]:disabled,
+.availability-managed [data-action="quick-close"]:disabled {
     background-color: #e2e3e5;
     border-color: #8c959d;
     color: #343a40;
@@ -8,8 +8,8 @@
     box-shadow: none;
 }
 
-.local-managedavailability [data-action="quick-open"]:disabled:hover,
-.local-managedavailability [data-action="quick-close"]:disabled:hover {
+.availability-managed [data-action="quick-open"]:disabled:hover,
+.availability-managed [data-action="quick-close"]:disabled:hover {
     background-color: #e2e3e5;
     border-color: #8c959d;
     color: #343a40;
