@@ -22,11 +22,11 @@ use availability_managed\local\progression_service;
 /**
  * Manual progression tests.
  *
+ * @covers \availability_managed\local\progression_service
  * @package availability_managed
  * @copyright 2026 Juan Luis Simon
  * @license http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
-#[\PHPUnit\Framework\Attributes\CoversClass(progression_service::class)]
 final class progression_service_test extends \advanced_testcase {
     public function test_open_next_group_uses_course_order(): void {
         $this->resetAfterTest();

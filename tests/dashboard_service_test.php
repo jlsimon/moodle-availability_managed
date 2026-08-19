@@ -22,11 +22,11 @@ use availability_managed\local\dashboard_service;
 /**
  * Dashboard service tests.
  *
+ * @covers \availability_managed\local\dashboard_service
  * @package availability_managed
  * @copyright 2026 Juan Luis Simon
  * @license http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
-#[\PHPUnit\Framework\Attributes\CoversClass(dashboard_service::class)]
 final class dashboard_service_test extends \advanced_testcase {
     public function test_replace_rules_and_summary(): void {
         $this->resetAfterTest();

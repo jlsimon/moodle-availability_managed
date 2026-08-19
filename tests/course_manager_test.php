@@ -23,11 +23,11 @@ use availability_managed\local\reconciliation_service;
 /**
  * Tests course activation and lifecycle behaviour.
  *
+ * @covers \availability_managed\local\course_manager
  * @package availability_managed
  * @copyright 2026 Juan Luis Simon
  * @license http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
-#[\PHPUnit\Framework\Attributes\CoversClass(course_manager::class)]
 final class course_manager_test extends \advanced_testcase {
     /** @var \stdClass course */
     private \stdClass $course;

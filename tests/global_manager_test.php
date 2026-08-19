@@ -23,11 +23,11 @@ use availability_managed\local\global_manager;
 /**
  * Site-wide suspension tests.
  *
+ * @covers \availability_managed\local\global_manager
  * @package availability_managed
  * @copyright 2026 Juan Luis Simon
  * @license http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
-#[\PHPUnit\Framework\Attributes\CoversClass(global_manager::class)]
 final class global_manager_test extends \advanced_testcase {
     public function test_reactivation_reconciles_content_created_while_suspended(): void {
         global $DB;

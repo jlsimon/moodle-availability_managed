@@ -21,11 +21,11 @@ use availability_managed\local\availability_tree_manager;
 /**
  * Availability tree mutation tests.
  *
+ * @covers \availability_managed\local\availability_tree_manager
  * @package availability_managed
  * @copyright 2026 Juan Luis Simon
  * @license http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
-#[\PHPUnit\Framework\Attributes\CoversClass(availability_tree_manager::class)]
 final class availability_tree_manager_test extends \advanced_testcase {
     public function test_ensure_empty_tree(): void {
         $actual = json_decode(availability_tree_manager::ensure_in_json(null));
