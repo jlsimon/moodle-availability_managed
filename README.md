@@ -34,6 +34,10 @@ restore support, and reconciliation tools.
 - PHP and database versions supported by the selected Moodle release.
 - Conditional availability enabled in Moodle.
 
+The plugin has no additional plugin dependencies, bundled third-party
+libraries, external services, API keys, or paid subscriptions. It works out
+of the box after Moodle completes the standard plugin installation.
+
 The CI matrix tests Moodle 4.5 with PHP 8.1 and Moodle 5.2 with PHP 8.4,
 using both MariaDB and PostgreSQL.
 
@@ -93,6 +97,12 @@ availability_managed_audit
 Group membership, enrolments, names, and email addresses remain owned by
 Moodle and are resolved dynamically.
 
+The plugin stores course configuration, access targets, the user ID of the
+person who last changed a rule, and a functional audit trail. It does not
+send data to an external service. Its Moodle Privacy API provider supports
+data discovery, export, and deletion for individually targeted users and
+audit actors.
+
 Capabilities provided by the plugin are:
 
 ```text
@@ -122,6 +132,12 @@ Additional technical documentation:
 - [Availability-tree handling](docs/availability-tree.md)
 - [Data model](docs/data-model.md)
 - [Testing](docs/testing.md)
+
+Public support resources:
+
+- [Issue tracker](https://github.com/jlsimon/moodle-availability_managed/issues)
+- [Source repository](https://github.com/jlsimon/moodle-availability_managed)
+- [Security policy](SECURITY.md)
 
 ## License
 
