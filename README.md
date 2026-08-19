@@ -8,8 +8,8 @@ activities, and resources.
 
 This repository contains one installable Moodle component:
 `availability_managed`. It owns the availability condition, dashboard,
-course configuration, rules, audit trail, privacy provider, backup and
-restore support, and reconciliation tools.
+course configuration, rules, audit trail, privacy provider, safe course
+restore handling, and reconciliation tools.
 
 ## Features
 
@@ -26,7 +26,9 @@ restore support, and reconciliation tools.
 - Suspend managed restrictions globally without deleting stored rules.
 - Record functional changes in an audit trail.
 - Reconcile conditions and rules from the command line.
-- Support Moodle Privacy API and course backup and restore.
+- Support Moodle Privacy API.
+- Ensure restored course copies start unmanaged, without orphaned conditions
+  that could otherwise close content when site-specific rules are unavailable.
 
 ## Requirements
 
